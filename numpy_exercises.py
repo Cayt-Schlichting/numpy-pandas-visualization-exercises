@@ -130,6 +130,7 @@ print(f'The array shape is: {b2.shape}')
 
 # Exercise 10 - transpose the array b.
 b2_trans = b2.transpose()
+b2_trans == b2.T
 
 # Exercise 11 - reshape the array b to be a single list of 6 numbers. (1 x 6)
 #reshaping to one dimension actually makes 2d array within an array.  
