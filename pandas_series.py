@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+# import matplotlib
 
 ### EXERCISES - PART 1 ####
 fruits = pd.Series(["kiwi", "mango", "strawberry", "pineapple", "gala apple", "honeycrisp apple", "tomato", "watermelon", "honeydew", "kiwi", "kiwi", "kiwi", "mango", "blueberry", "blackberry", "gooseberry", "papaya"])
@@ -39,6 +40,7 @@ sum(fruits.str.lower().str.count('a'))
 #3
 vowels = list('aeiou')
 count = 0
+count = pd.Series(np.zeros(fruits.shape()))
 for i in vowels:
     count += sum(fruits.str.lower().str.count(i))
 print(f'There are {count} vowels in this series')
@@ -73,3 +75,24 @@ fruits[fruits.str.contains('berry')].values
 fruits[fruits.str.contains('apple')].values
 #9
 fruits[fruits.apply(count_vowels).idxmax()]
+
+### EXERCISES - PART 3 ####
+alp = pd.Series(list('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy'))
+#1 - most freq letter
+alp.value_counts().nlargest(n=1,keep='all') #y 13
+#2 - least freq letter
+alp.value_counts().nsmallest(n=1,keep='all') #l 4
+#3 how many vowels
+  #This will get a 0 or 1 for each, then just take the sum of the whole series
+sum(alp.apply(count_vowels)) #34
+#4 how many consonants
+  #this works because there is one char per element
+alp.size-sum(alp.apply(count_vowels)) #166
+#5 uppercase them
+alp_up = alp.str.upper()
+#6 bar plot of the frequencies of 6 most common letters
+## FINISH ME in Jupyter
+
+#PART 3, SECTION 2
+exam_scores = pd.Series([60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81, 96, 80, 85, 92, 82, 78])
+## FINISH ME in Jupyter
