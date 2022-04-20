@@ -14,7 +14,7 @@ math_grades = np.random.randint(low=60, high=100, size=len(students))
 english_grades = np.random.randint(low=60, high=100, size=len(students))
 reading_grades = np.random.randint(low=60, high=100, size=len(students))
 
-df2 = pd.DataFrame({'name': students,
+df = pd.DataFrame({'name': students,
                    'math': math_grades,
                    'english': english_grades,
                    'reading': reading_grades})
@@ -33,6 +33,12 @@ df.sort_values(by=['passing_english','english'],ascending=[False,False])
 
 #1e)
 df['grade'] = round((df.english + df.math + df.reading)/3,2)
+# could also take mean of columns
+#This would work if we want mean of ALL numeric columns - BUT includes booleans
+df.mean(axis=1,numeric_only=True) 
+#or we could specify the columns we want to play with:
+df[['english','math','reading']].mean(axis=1)
+
 
 #2 - MPG DATASET
 # data('mpg',show_doc=True)
